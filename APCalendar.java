@@ -28,7 +28,21 @@ public class APCalendar{
     /** Returns the value representing the day of the week for the first day of year,
     * where 0 denotes Sunday, 1 denotes Monday, ..., and 6 denotes Saturday.
     */
-    private static int firstDayOfYear(int year){}
+    private static int firstDayOfYear(int year){
+        //only works for the 2000s
+        int lastTwo = year - 2000 ;
+        lastTwo += lastTwo/4 ;
+        lastTwo += 6 + 1 ;
+        if(isLeapYear(year)){
+            lastTwo -= 1 ;
+        }
+        int ans = lastTwo % 7 ;
+        return ans ;
+    }
+
+    public static int day(int year){
+        return firstDayOfYear(year);
+    }
 
     /** Returns n, where month, day, and year specify the nth day of the year.
     * Returns 1 for January 1 (month = 1, day = 1) of any year.
