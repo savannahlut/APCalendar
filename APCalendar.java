@@ -49,11 +49,25 @@ public class APCalendar{
     }
 
     /** 
-    * JFM AMJ JAS OND 
-    * 144 025 036 146
+    * JFM: 033, AMJ: 614, JAS: 625, OND: 035. 
     */
-    private static int monthCode(){
-        
+    private static int monthCode(int month){
+        if(month == 1 || month == 10 ){
+            return 0;
+        } else if (month == 2 || month == 3 || month == 11){
+            return 3;
+        } else if (month == 4 || month == 7){
+            return 6;
+        } else if(month == 5){
+            return 1;
+        } else if(month == 6){
+            return 4; 
+        } else if(month == 8){
+            return 2;
+        } else if(month == 9 || month == 12){
+            return 5;
+        }
+        return -1;
     }
 
     /** Returns n, where month, day, and year specify the nth day of the year.
@@ -63,9 +77,9 @@ public class APCalendar{
     private static int dayOfYear(int month, int day, int year){
         int lastTwo = year - 2000 ;
         lastTwo += lastTwo/4 ;
-        lastTwo += day ;
+        lastTwo += 6 + day ;
         lastTwo += monthCode(month);
-        if(isLeapYear(year)){
+        if(isLeapYear(year) && (month == 1 || month == 2)){
             lastTwo -= 1 ;
         }
         int ans = lastTwo % 7 ;
