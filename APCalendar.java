@@ -40,15 +40,37 @@ public class APCalendar{
         return ans ;
     }
 
+    //To access the private methods
     public static int day(int year){
         return firstDayOfYear(year);
+    }
+    public static int day(int month, int day, int year){
+        return dayOfYear(month, day, year) ;
+    }
+
+    /** 
+    * JFM AMJ JAS OND 
+    * 144 025 036 146
+    */
+    private static int monthCode(){
+        
     }
 
     /** Returns n, where month, day, and year specify the nth day of the year.
     * Returns 1 for January 1 (month = 1, day = 1) of any year.
     * Precondition: The date represented by month, day, year is a valid date.
     */
-    private static int dayOfYear(int month, int day, int year){}
+    private static int dayOfYear(int month, int day, int year){
+        int lastTwo = year - 2000 ;
+        lastTwo += lastTwo/4 ;
+        lastTwo += day ;
+        lastTwo += monthCode(month);
+        if(isLeapYear(year)){
+            lastTwo -= 1 ;
+        }
+        int ans = lastTwo % 7 ;
+        return ans ;
+    }
     
     /** Returns the value representing the day of the week for the given date
     * (month, day, year), where 0 denotes Sunday, 1 denotes Monday, ...,
@@ -56,8 +78,8 @@ public class APCalendar{
     * Precondition: The date represented by month, day, year is a valid date.
     */
     public static int dayOfWeek(int month, int day, int year){
-        int additionalDays = dayOfYear(month, day, year) - 1;
-        return (firstDayOfYear(year) + additionalDays) % 7;
+        int additional = dayOfYear(month, day, year) - 1;
+        return (firstDayOfYear(year) + additional) % 7;
     }
     // There may be instance variables, constructors, and other methods not shown.
 }
