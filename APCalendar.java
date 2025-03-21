@@ -40,6 +40,11 @@ public class APCalendar{
         return ans ;
     }
 
+    public static void main(String[] args) {
+        for(int i = 2000; i < 2026; i++)
+            System.out.println(i + " " + firstDayOfYear(i));
+    }
+
     //To access the private methods
     public static int day(int year){
         return firstDayOfYear(year);
@@ -92,7 +97,7 @@ public class APCalendar{
     * Precondition: The date represented by month, day, year is a valid date.
     */
     public static int dayOfWeek(int month, int day, int year){
-        int additional = dayOfYear(month, day, year) - 1;
+        int additional = dayOfYear(month, day, year) - 2;
         return (firstDayOfYear(year) + additional) % 7;
     }
     // There may be instance variables, constructors, and other methods not shown.

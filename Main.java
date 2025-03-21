@@ -7,6 +7,7 @@ public class Main{
         System.out.println(APCalendar.day(2023));
         System.out.println(APCalendar.day(2008));
         
+        System.out.println(APCalendar.dayOfWeek(1, 5, 2019));
         System.out.println(APCalendar.dayOfWeek(1, 10, 2019));
     }
 }
